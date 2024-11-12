@@ -59,22 +59,17 @@ public class Main {
                 Thread.sleep(4000); //
                 System.out.println(Colors.RED + "Time is up!");
 
-// Calculating the answer for Question-1
-                double side_AC = 1200; // Distance from the boat to the cliff
-                double tan_theta = Math.toDegrees(Math.atan(500 / side_AC)); // Calculating angle using arctan
-                double result1 = Math.round(tan_theta); // Rounding to the nearest whole number
-                System.out.println(Colors.RESET + "Please enter your answer, rounded to a whole number: ");
-                answer = numberInput.nextDouble();
-
-// Validating the answer
-                Thread.sleep(1000);
-                if (answer == result1) {
-                    System.out.println(Colors.GREEN + "Correct!");
-                    playerScore = playerScore + 1;
+                Main main = new Main();
+                System.out.println("Enter your answer for Question 1:");
+                if (numberInput.hasNextDouble()) {
+                    answer = numberInput.nextDouble();
+                    System.out.println("Before calling CheckAnswer1");
+                    Result result = main.CheckAnswer1(answer);
+                    System.out.println("After calling CheckAnswer1");
                 } else {
-                    System.out.println(Colors.DARK_RED + "Incorrect!");
-                    System.out.println(Colors.CYAN + "Correct answer is -> " + result1);
+                    System.out.println("Invalid input, please enter a number.");
                 }
+
 
 // Question 2
 
@@ -164,5 +159,43 @@ public class Main {
         }
     }
 
+    public class Result {
+        public boolean isSuccessful;
+        public double value; // Change the type as needed
+
+        // Constructor
+        public Result(boolean isSuccessful, double value) {
+            this.isSuccessful = isSuccessful;
+            this.value = value;
+        }
+    }
+
+    public Result CheckAnswer1 (double answer) throws Exception {
+        // Calculating the answer for Question-1
+
+        Result result = new Result(false, answer);
+
+        double side_AC = 1200; // Distance from the boat to the cliff
+        double tan_theta = Math.toDegrees(Math.atan(500 / side_AC)); // Calculating angle using arctan
+        double result1 = Math.round(tan_theta); // Rounding to the nearest whole number
+        System.out.println(Colors.RESET + "Please enter your answer, rounded to a whole number: ");
+
+
+
+// Validating the answer
+        Thread.sleep(1000);
+        if (answer == result1) {
+            result.isSuccessful = true;
+            System.out.println(Colors.GREEN + "Correct!");
+            playerScore = playerScore + 1;
+        } else {
+            result.isSuccessful = false;
+            System.out.println(Colors.DARK_RED + "Incorrect!");
+            System.out.println(Colors.CYAN + "Correct answer is -> " + result1);
+        }
+    return result;
+    }
 
 }
+
+
