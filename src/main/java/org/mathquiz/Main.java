@@ -60,12 +60,10 @@ public class Main {
                 System.out.println(Colors.RED + "Time is up!");
 
                 Main main = new Main();
-                System.out.println("Enter your answer for Question 1:");
                 if (numberInput.hasNextDouble()) {
                     answer = numberInput.nextDouble();
-                    System.out.println("Before calling CheckAnswer1");
                     Result result = main.CheckAnswer1(answer);
-                    System.out.println("After calling CheckAnswer1");
+                    main.OutputMessage(result);
                 } else {
                     System.out.println("Invalid input, please enter a number.");
                 }
@@ -159,14 +157,13 @@ public class Main {
         }
     }
 
-    public class Result {
-        public boolean isSuccessful;
-        public double value; // Change the type as needed
 
-        // Constructor
-        public Result(boolean isSuccessful, double value) {
-            this.isSuccessful = isSuccessful;
-            this.value = value;
+    public void OutputMessage (Result result) {
+        if (result.isSuccessful) {
+            System.out.println(Colors.GREEN + "Correct!");
+        } else {
+            System.out.println(Colors.DARK_RED + "Incorrect!");
+            System.out.println(Colors.CYAN + "Correct answer is -> " + result.value);
         }
     }
 
@@ -186,12 +183,9 @@ public class Main {
         Thread.sleep(1000);
         if (answer == result1) {
             result.isSuccessful = true;
-            System.out.println(Colors.GREEN + "Correct!");
             playerScore = playerScore + 1;
         } else {
             result.isSuccessful = false;
-            System.out.println(Colors.DARK_RED + "Incorrect!");
-            System.out.println(Colors.CYAN + "Correct answer is -> " + result1);
         }
     return result;
     }
