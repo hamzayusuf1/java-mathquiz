@@ -18,7 +18,7 @@ public class Main {
         Scanner numberInput = new Scanner(System.in);
         Scanner textInput = new Scanner(System.in);
 
-        Main.guideMessages();
+/*        Main.guideMessages();*/
 
         System.out.println(Colors.RESET);
         Thread.sleep(4000);
@@ -30,7 +30,7 @@ public class Main {
             countDown--;
 
             if (countDown==0) {
-                Main.AskQs1();
+               /* Main.AskQs1();
                 startTime = System.currentTimeMillis();
 
 
@@ -42,12 +42,12 @@ public class Main {
                     Main.OutputMessage(result);
                 } else {
                     System.out.println("Invalid input, please enter a number.");
-                }
+                }*/
 
 
 // Question 2
 
-               Main.AskQ2();
+               /*Main.AskQ2();
                 startTime = System.currentTimeMillis();
                 if  (numberInput.hasNextDouble()) {
                     answer = numberInput.nextDouble();
@@ -57,7 +57,7 @@ public class Main {
                     Main.OutputMessage((result));
                 } else {
                     System.out.println("Invalid input, please enter a number.");
-                }
+                }*/
 
 // Display Question 3
                Main.AskQ3();
@@ -168,8 +168,8 @@ public class Main {
 
 // Time limit
         System.out.println();
-        System.out.println(Colors.RESET + "You have 10 seconds to read this question.");
-        Thread.sleep(10000); // 4-second delay
+        System.out.println(Colors.RESET + "You have 4 seconds to read this question.");
+        Thread.sleep(4000); // 4-second delay
         System.out.println(Colors.RED + "Time is up!");
         System.out.println(Colors.RESET + "Please enter your answer, rounded to a whole number: ");
     }
@@ -180,7 +180,7 @@ public class Main {
             System.out.println("You completed the question in " + result.timeTaken + " seconds.");
         } else {
             System.out.println(Colors.DARK_RED + "Incorrect!");
-            System.out.println(Colors.CYAN + "Correct answer is -> " + result.value);
+            System.out.println(Colors.CYAN + "Correct answer is -> " + result.correctValue);
             System.out.println("You completed the question in " + result.timeTaken + " seconds.");
 
         }
@@ -189,13 +189,12 @@ public class Main {
     public static Result CheckAnswer1 (double answer, long timeTaken) throws Exception {
         // Calculating the answer for Question-1
 
-        Result result = new Result(false, answer, timeTaken);
 
         double side_AC = 1200; // Distance from the boat to the cliff
         double tan_theta = Math.toDegrees(Math.atan(500 / side_AC)); // Calculating angle using arctan
         double result1 = Math.round(tan_theta); // Rounding to the nearest whole number
 
-
+        Result result = new Result(false, answer,result1, timeTaken);
 
 // Validating the answer
         Thread.sleep(1000);
@@ -209,10 +208,11 @@ public class Main {
     }
 
     public static Result CheckAnswer2 (double answer, long timeTaken) throws Exception {
-        Result result = new Result(false, answer, timeTaken);
+
         double treeHeight = 21.6 * Math.tan(Math.toRadians(60)); // Using tangent to find height
         double result2 = Math.round(treeHeight); // Rounding to the nearest whole number
 
+        Result result = new Result(false, answer,result2, timeTaken);
 
 // Check the answer
         Thread.sleep(1000);
@@ -226,13 +226,14 @@ public class Main {
     }
 
     public static Result CheckAnswer3 (double answer, long timeTaken) throws Exception {
-        Result result = new Result(false, answer, timeTaken);
+
 
         // Calculate the answer
         int monthlyCost = 40 * 400; // Total monthly cost for all horses
         int totalEarnings = 40 * 14 * 40; // Total earnings from all horses
         float result3 = totalEarnings - monthlyCost; // Net profit
 
+        Result result = new Result(false, answer,result3, timeTaken);
 
 // Check the answer
         Thread.sleep(1000);
