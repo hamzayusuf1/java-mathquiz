@@ -1,8 +1,7 @@
 package org.mathquiz;
 
-import java.sql.PreparedStatement;
-import java.sql.Time;
 import java.util.Scanner;
+import org.mathquiz.HighscoresRepo;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -17,6 +16,8 @@ public class Main {
     public static void main (String[] args) throws Exception {
         Scanner numberInput = new Scanner(System.in);
         Scanner textInput = new Scanner(System.in);
+
+
 
 /*        Main.guideMessages();*/
 
@@ -71,6 +72,17 @@ public class Main {
                 } else {
                     System.out.println("Invalid input, please enter a number.");
                 }
+
+                /*Save the scores*/
+
+                Scanner scanner = new Scanner(System.in);
+
+                // Simulate a score (replace with actual logic to calculate the score)
+
+                System.out.print("Enter your name: ");
+                String name = scanner.nextLine();
+
+                HighscoresRepo.saveHighScore(name, playerScore);
 
 
             }

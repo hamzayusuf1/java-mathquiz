@@ -73,6 +73,8 @@ public class MathquizTest {
 
         int actual = Main.playerScore;
         int expected = 2; /*Only two right answers*/
+
+        assertEquals(2, actual, "eRROR");
     }
 
 
