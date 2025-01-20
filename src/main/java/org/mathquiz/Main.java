@@ -1,5 +1,6 @@
 package org.mathquiz;
 
+import java.util.List;
 import java.util.Scanner;
 import org.mathquiz.HighscoresRepo;
 
@@ -19,7 +20,11 @@ public class Main {
 
 
 
-/*        Main.guideMessages();*/
+
+
+/*
+        Main.guideMessages();
+*/
 
         System.out.println(Colors.RESET);
         Thread.sleep(4000);
@@ -31,6 +36,11 @@ public class Main {
             countDown--;
 
             if (countDown==0) {
+                List<Question> questions = QuestionsRepo.retriveQuestions();
+
+                System.out.println(questions);
+
+
                /* Main.AskQs1();
                 startTime = System.currentTimeMillis();
 
@@ -61,7 +71,7 @@ public class Main {
                 }*/
 
 // Display Question 3
-               Main.AskQ3();
+               /*Main.AskQ3();
                 startTime = System.currentTimeMillis();
                 if  (numberInput.hasNextDouble()) {
                     answer = numberInput.nextDouble();
@@ -71,7 +81,7 @@ public class Main {
                     Main.OutputMessage((result));
                 } else {
                     System.out.println("Invalid input, please enter a number.");
-                }
+                }*/
 
                 /*Save the scores*/
 
