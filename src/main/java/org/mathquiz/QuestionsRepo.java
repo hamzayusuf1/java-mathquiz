@@ -33,34 +33,9 @@ public class QuestionsRepo {
                 String optionD = resultSet.getString("option_d");
                 char correctOption = resultSet.getString("correct_option").charAt(0);
 
-                // Debugging: Print retrieved data
-                System.out.println("Retrieved Question: Title=" + title + ", Question=" + questionText);
-
                 // Add Question to the list
                 questions.add(new Question(questionText, title, hint, optionA, optionB, optionC, optionD, correctOption));
             }
-
-// Debugging: Print the entire list after processing
-      /*      System.out.println("Questions List: " + questions);*/
-
-
-
-
-
-            while (resultSet.next()) {
-                String questionText = resultSet.getString("question_text");
-                String title = resultSet.getString("title");
-                String hint = resultSet.getString("hint");
-                String optionA = resultSet.getString("option_a");
-                String optionB = resultSet.getString("option_b");
-                String optionC = resultSet.getString("option_c");
-                String optionD = resultSet.getString("option_d");
-                char correctOption = resultSet.getString("correct_option").charAt(0);
-
-                questions.add(new Question(questionText, title, hint, optionA,optionB,optionC,optionD,correctOption));
-                System.out.println(questions);
-
-            };
         } catch (Exception e) {
             e.printStackTrace();
         }
