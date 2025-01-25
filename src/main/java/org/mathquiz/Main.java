@@ -16,13 +16,9 @@ public class Main {
     public static void main (String[] args) throws Exception {
         Scanner textInput = new Scanner(System.in);
 
-
-
-
 /*
         Main.guideMessages();
 */
-
         System.out.println(Colors.RESET);
         Thread.sleep(4000);
         System.out.println("The quiz will begin in 5 seconds. Get ready, and good luck! -> Enjoy! <-");
@@ -36,8 +32,10 @@ public class Main {
                 List<Question> questions = QuestionsRepo.retriveQuestions();
 
                 for (Question question : questions) {
+                    int index = questions.indexOf(question) + 1;
+
                     System.out.println("Let's go");
-                    System.out.println(Colors.GREEN_ITALIC + "Question 1 ->" + question.getTitle());
+                    System.out.println(Colors.GREEN_ITALIC + "Question->" + index + " " + question.getTitle());
                     Thread.sleep(1000);
                     System.out.println(Colors.GREEN);
                     System.out.println(question.getQuestionText());
