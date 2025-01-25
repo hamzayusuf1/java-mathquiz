@@ -1,23 +1,20 @@
 package org.mathquiz;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.mathquiz.HighscoresRepo;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static int playerScore = 0;
-    static double answer;
+    static String answer;
     static long startTime;
     static long endTime;
     static long timeTaken;
 
 
     public static void main (String[] args) throws Exception {
-        Scanner numberInput = new Scanner(System.in);
         Scanner textInput = new Scanner(System.in);
-
 
 
 
@@ -38,22 +35,45 @@ public class Main {
             if (countDown==0) {
                 List<Question> questions = QuestionsRepo.retriveQuestions();
 
-                System.out.println(questions);
+                for (Question question : questions) {
+                    System.out.println("Let's go");
+                    System.out.println(Colors.GREEN_ITALIC + "Question 1 ->" + question.getTitle());
+                    Thread.sleep(1000);
+                    System.out.println(Colors.GREEN);
+                    System.out.println(question.getQuestionText());
+                    Thread.sleep(1000);
+                    System.out.println(Colors.YELLOW + "Hint -> " + question.getHint());
+                    Thread.sleep(5000);
+                    System.out.println(Colors.WHITE_BOLD);
+                    System.out.println();
+
+                    System.out.println("You have 5 seconds to read this question");
+                    Thread.sleep(4000); //
+                    System.out.println(Colors.RED + "Time is up!");
+                    startTime = System.currentTimeMillis();
+                    System.out.println(Colors.RESET + "Please enter the right answer, select from A, B, C and D");
+
+                    if (textInput.hasNextLine()) {
+                        String input = textInput.nextLine().trim();
+
+                        // Validate input
+                        if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
+                            answer = input.toUpperCase();
+                            endTime = System.currentTimeMillis();
+                            timeTaken = (endTime - startTime) / 1000;
+
+                            Result result = Main.CheckAnswer1(answer, timeTaken, question.getCorrectOption());
+                            Main.OutputMessage(result);
+                        } else {
+                            System.out.println("Invalid input! Please enter only one letter (A, B, C, or D).");
+                        }
+                    } else {
+                        System.out.println("No input detected. Please try again.");
+                    }
 
 
-               /* Main.AskQs1();
-                startTime = System.currentTimeMillis();
+                }
 
-
-                if (numberInput.hasNextDouble()) {
-                    answer = numberInput.nextDouble();
-                    endTime = System.currentTimeMillis();
-                    timeTaken = (endTime - startTime) / 1000;
-                    Result result = Main.CheckAnswer1(answer, timeTaken);
-                    Main.OutputMessage(result);
-                } else {
-                    System.out.println("Invalid input, please enter a number.");
-                }*/
 
 
 // Question 2
@@ -112,35 +132,7 @@ public class Main {
         System.out.println("-> Enjoy and give it your best shot!");
     }
 
-    public static void AskQs1 () throws Exception {
-        System.out.println("Let's go");
-        System.out.println(Colors.GREEN_ITALIC + "Question 1 -> Angle of Elevation");
-        Thread.sleep(1000);
-        System.out.println(Colors.GREEN);
-        System.out.println("A lighthouse stands on a cliff overlooking the ocean. The cliff is 500ft tall, and the distance from the base of the cliff to a boat in the ocean is approximately 1200ft.");
-        System.out.println("Calculate the angle of elevation (a) from the boat to the top of the lighthouse.");
-        Thread.sleep(1000);
-        System.out.println(Colors.YELLOW + "Hint -> Use the height of the cliff and the distance from the boat to the base of the cliff to find the angle.");
-        Thread.sleep(5000);
-        System.out.println(Colors.WHITE_BOLD);
-        System.out.println("        B #");
-        System.out.println("          | #");
-        System.out.println("          |  #");
-        System.out.println("          |   #");
-        System.out.println("          |    #");
-        System.out.println("    500ft |     # ");
-        System.out.println("         _|   a _#");
-        System.out.println("A ______|_|____|__#  C");
-        System.out.println("       1200ft");
-        System.out.println();
 
-// Time limit
-        System.out.println("You have 5 seconds to read this question");
-        Thread.sleep(4000); //
-        System.out.println(Colors.RED + "Time is up!");
-        System.out.println(Colors.RESET + "Please enter your answer, rounded to a whole number: ");
-
-    }
 
     public static void AskQ2() throws Exception {
         // Pause before showing the question
@@ -208,67 +200,26 @@ public class Main {
         }
     }
 
-    public static Result CheckAnswer1 (double answer, long timeTaken) throws Exception {
-        // Calculating the answer for Question-1
+    public static Result CheckAnswer1(String answer, long timeTaken, char correctOption) throws Exception {
+        Result result = new Result(false, answer, correctOption, timeTaken);
 
-
-        double side_AC = 1200; // Distance from the boat to the cliff
-        double tan_theta = Math.toDegrees(Math.atan(500 / side_AC)); // Calculating angle using arctan
-        double result1 = Math.round(tan_theta); // Rounding to the nearest whole number
-
-        Result result = new Result(false, answer,result1, timeTaken);
-
-// Validating the answer
         Thread.sleep(1000);
-        if (answer == result1) {
-            result.isSuccessful = true;
-            playerScore = playerScore + 1;
+
+        // Validate if the answer is a single character
+        if (answer.length() == 1) {
+            char userAnswer = Character.toUpperCase(answer.charAt(0)); // Convert to uppercase for comparison
+            if (userAnswer == correctOption) {
+                result.isSuccessful = true;
+                playerScore += 1; // Increment the score
+            } else {
+                result.isSuccessful = false;
+            }
         } else {
-            result.isSuccessful = false;
+            System.out.println("Invalid answer format.");
         }
-    return result;
-    }
 
-    public static Result CheckAnswer2 (double answer, long timeTaken) throws Exception {
-
-        double treeHeight = 21.6 * Math.tan(Math.toRadians(60)); // Using tangent to find height
-        double result2 = Math.round(treeHeight); // Rounding to the nearest whole number
-
-        Result result = new Result(false, answer,result2, timeTaken);
-
-// Check the answer
-        Thread.sleep(1000);
-        if (answer == result2) {
-            result.isSuccessful = true;
-            playerScore += 1; // Increment score
-        } else {
-            result.isSuccessful = false;
-        }
         return result;
     }
-
-    public static Result CheckAnswer3 (double answer, long timeTaken) throws Exception {
-
-
-        // Calculate the answer
-        int monthlyCost = 40 * 400; // Total monthly cost for all horses
-        int totalEarnings = 40 * 14 * 40; // Total earnings from all horses
-        float result3 = totalEarnings - monthlyCost; // Net profit
-
-        Result result = new Result(false, answer,result3, timeTaken);
-
-// Check the answer
-        Thread.sleep(1000);
-        if (answer == Math.round(result3)) {
-            result.isSuccessful = true;
-            playerScore += 1; // Increment score
-        } else {
-            result.isSuccessful = false;
-        }
-        return result;
-    }
-
-
 }
 
 

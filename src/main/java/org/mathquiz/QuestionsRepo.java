@@ -8,7 +8,7 @@ import java.util.List;
 
 public class QuestionsRepo {
     public static List<Question> retriveQuestions () {
-        String query = "SELECT * FROM questions;";
+        String query = "SELECT * FROM questions ORDER BY RANDOM();";
        List<Question> questions = new ArrayList<>();
 
         try(Connection connection = DatabaseConnection.getConnection();
@@ -41,7 +41,7 @@ public class QuestionsRepo {
             }
 
 // Debugging: Print the entire list after processing
-            System.out.println("Questions List: " + questions);
+      /*      System.out.println("Questions List: " + questions);*/
 
 
 
