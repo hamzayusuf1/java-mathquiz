@@ -1,6 +1,10 @@
-package org.mathquiz;
+package com.example.model;
 
-public class Question {
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Questions {
     private String title;
     private String questionText;
     private String hint;
@@ -10,7 +14,8 @@ public class Question {
     private String optionD;
     private char correctOption;
 
-    public Question(String title, String questionText, String hint, String optionA, String optionB, String optionC, String optionD, char correctOption) {
+
+    public Questions(String title, String questionText, String hint, String optionA, String optionB, String optionC, String optionD, char correctOption) {
         this.title = title;
         this.questionText = questionText;
         this.hint = hint;
@@ -84,18 +89,4 @@ public class Question {
     public void setCorrectOption(char correctOption) {
         this.correctOption = correctOption;
     }
-
-    @Override
-    public String toString() {
-        return "Title: " + title + "\n" +
-                "Question: " + questionText + "\n" +
-                "Hint: " + hint + "\n" +
-                "Options: \n" +
-                "  A) " + optionA + "\n" +
-                "  B) " + optionB + "\n" +
-                "  C) " + optionC + "\n" +
-                "  D) " + optionD + "\n" +
-                "Correct Option: " + correctOption + "\n";
-    }
 }
-
