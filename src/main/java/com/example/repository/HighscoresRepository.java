@@ -1,4 +1,4 @@
-package com.example.repositiory;
+package com.example.repository;
 
 public class HighscoresRepository {
 }

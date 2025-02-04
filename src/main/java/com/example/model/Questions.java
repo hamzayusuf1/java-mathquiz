@@ -1,17 +1,36 @@
 package com.example.model;
 
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "questions", schema = "public")
 public class Questions {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
+
     private String title;
+
+    @Column(name = "question_text")  // Ensure it matches PostgreSQL column
     private String questionText;
+
     private String hint;
+
+    @Column(name = "optiona")  // Match exact column name
     private String optionA;
+
+    @Column(name = "optionb")
     private String optionB;
+
+    @Column(name = "optionc")
     private String optionC;
+
+    @Column(name = "optiond")
     private String optionD;
+
+    @Column(name = "correct_option")
     private char correctOption;
 
 
@@ -29,6 +48,10 @@ public class Questions {
     public String getTitle() {
         return title;
     }
+
+    public Long getId() {
+        return id;
+    };
 
     public void setTitle(String title) {
         this.title = title;
