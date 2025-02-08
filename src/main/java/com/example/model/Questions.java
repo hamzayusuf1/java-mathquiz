@@ -18,23 +18,25 @@ public class Questions {
 
     private String hint;
 
-    @Column(name = "optiona")  // Match exact column name
+    @Column(name = "option_a")  // Match exact column name
     private String optionA;
 
-    @Column(name = "optionb")
+    @Column(name = "option_b")
     private String optionB;
 
-    @Column(name = "optionc")
+    @Column(name = "option_c")
     private String optionC;
 
-    @Column(name = "optiond")
+    @Column(name = "option_d")
     private String optionD;
 
     @Column(name = "correct_option")
     private char correctOption;
 
+    public Questions() {};
 
-    public Questions(String title, String questionText, String hint, String optionA, String optionB, String optionC, String optionD, char correctOption) {
+    public Questions(Long id, String title, String questionText, String hint, String optionA, String optionB, String optionC, String optionD, char correctOption) {
+        this.id = id;
         this.title = title;
         this.questionText = questionText;
         this.hint = hint;

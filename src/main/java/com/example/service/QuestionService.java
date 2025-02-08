@@ -14,17 +14,12 @@ import java.util.List;
 
 @Service
 public class QuestionService {
-    private static final Logger logger = LoggerFactory.getLogger(QuestionService.class);
-    private final QuestionsRepository questionRepository;
 
     @Autowired
-    public QuestionService(QuestionsRepository questionRepository) {
-        this.questionRepository = questionRepository;
-    }
+    QuestionsRepository questionRepository;
 
     public List<Questions> getAllQuestions() {
         List<Questions> questions = questionRepository.findAll();
-        logger.info("Fetched Questions: " + questions);
         return questions;
     }
 }
