@@ -22,4 +22,8 @@ public class QuestionService {
         List<Questions> questions = questionRepository.findAll();
         return questions;
     }
+
+    public Questions getOneQuestion() {
+   return questionRepository.findRandomQuestion();
+    };
 }
