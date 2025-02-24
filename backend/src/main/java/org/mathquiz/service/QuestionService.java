@@ -1,11 +1,7 @@
-package com.example.service;
+package org.mathquiz.service;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.example.repository.QuestionsRepository;
-import com.example.model.Questions;
+import org.mathquiz.repository.QuestionsRepository;
+import org.mathquiz.model.Questions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +10,14 @@ import java.util.List;
 
 @Service
 public class QuestionService {
+    int age;
+
+    public static boolean checkUser(int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative");
+        }
+        return age >= 60;
+    };
 
     @Autowired
     QuestionsRepository questionRepository;

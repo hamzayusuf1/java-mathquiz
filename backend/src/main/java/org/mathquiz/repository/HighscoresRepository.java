@@ -1,4 +1,4 @@
-package com.example.repository;
+package org.mathquiz.repository;
 
 public class HighscoresRepository {
 }

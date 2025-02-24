@@ -1,4 +1,4 @@
-package com.example.model;
+package org.mathquiz.model;
 
 
 import jakarta.persistence.*;

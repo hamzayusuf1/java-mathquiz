@@ -1,8 +1,8 @@
-package com.example.controller;
+package org.mathquiz.controller;
 
 
-import com.example.model.Questions;
-import com.example.service.QuestionService;
+import org.mathquiz.model.Questions;
+import org.mathquiz.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class QuestionController {
 
     @Autowired

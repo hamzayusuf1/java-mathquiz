@@ -1,9 +1,12 @@
 import axios from "axios"
 import {useEffect, useState} from "react";
 
+import {Question} from "../types/question";
+
 export default function Home () {
     const [loading, setLoading] = useState<boolean>(true)
-    const [question, setQuestion] = useState();
+    const [question, setQuestion] = useState<Question | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         fetchRandomQuestion();
@@ -14,6 +17,7 @@ export default function Home () {
         try {
               const response = await axios.get<Question>("http://localhost:8080/api/question");
               setQuestion(response.data);
+              console.log(response.data)
             } catch (err) {
               setError("Failed to fetch question.");
             } finally {
