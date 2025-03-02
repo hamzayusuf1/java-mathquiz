@@ -3,6 +3,8 @@ package org.mathquiz.model;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 @Table(name = "questions", schema = "public")
 public class Questions {
@@ -33,9 +35,12 @@ public class Questions {
     @Column(name = "correct_option")
     private char correctOption;
 
+    @Column(name = "difficulty")
+    private String difficulty;
+
     public Questions() {};
 
-    public Questions(Long id, String title, String questionText, String hint, String optionA, String optionB, String optionC, String optionD, char correctOption) {
+    public Questions(Long id, String title, String questionText, String hint, String optionA, String optionB, String optionC, String optionD, char correctOption, String difficulty) {
         this.id = id;
         this.title = title;
         this.questionText = questionText;
@@ -45,6 +50,7 @@ public class Questions {
         this.optionC = optionC;
         this.optionD = optionD;
         this.correctOption = correctOption;
+        this.difficulty = difficulty;
     }
 
     public String getTitle() {
@@ -113,5 +119,9 @@ public class Questions {
 
     public void setCorrectOption(char correctOption) {
         this.correctOption = correctOption;
+    }
+
+    public String getDifficulty() {
+      return  difficulty;
     }
 }

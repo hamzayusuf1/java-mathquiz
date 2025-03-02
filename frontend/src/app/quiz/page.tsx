@@ -30,8 +30,9 @@ export default function Home () {
     }
 
     return (
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-            <h1>Quiz App</h1>
+        <div className={"w-full h-screen bg-sky-100"}>
+        <div className={"text-center p-6"}>
+            <h1 className={"bold text-xl text-gray-900 mb-4"}>Quiz App</h1>
 
             {loading && <p>Loading...</p>}
             {error && <p style={{ color: "red" }}>{error}</p>}
@@ -49,6 +50,7 @@ export default function Home () {
                     <button onClick={fetchRandomQuestion}>Next Question</button>
                 </div>
             )}
+        </div>
         </div>
     );
 }

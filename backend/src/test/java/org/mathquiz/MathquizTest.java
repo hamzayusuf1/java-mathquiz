@@ -1,4 +1,3 @@
-/*
 package org.mathquiz;
 
 import org.mathquiz.model.Questions;
@@ -12,15 +11,10 @@ public class MathquizTest {
     QuestionService questionService = new QuestionService();
 
 
-    @Test
-    public void CheckDiscountFunction () {
-       assertTrue(questionService.checkUser(61));
-    }
+   @Test
+    public void testAddQuestion() {
+       Questions question = new Questions();
+       questionService.addQuestion(question);
 
-    @Test
-    public void MultipleQuestionsRetreived() {
-        Questions questions = questionService.getOneQuestion();
-        assertTrue(questions.length > 1);
-    }
+   }
 }
-*/

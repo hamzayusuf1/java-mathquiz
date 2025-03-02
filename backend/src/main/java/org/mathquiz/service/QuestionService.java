@@ -30,4 +30,13 @@ public class QuestionService {
     public Questions getOneQuestion() {
    return questionRepository.findRandomQuestion();
     };
+
+    public List<Questions> getQuestionsByDifficulty(String category) {
+        return questionRepository.findByDifficulty(category);
+    }
+
+    public Questions addQuestion(Questions question) {
+        return questionRepository.save(question);
+    }
+
 }
